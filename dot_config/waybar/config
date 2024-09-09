@@ -138,15 +138,14 @@
         "on-click-right": "pavucontrol"
     },
     "battery": {
-        "interval": 2,
         "states": {
             "warning": 25,
             "critical": 15
         },
         "format": "{icon}{capacity: >3}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-full": " {icon}{capacity}%",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-full": "{icon}{capacity}% ",
         "format-alt": "{time}{icon}",
         "format-icons": ["", "", "", "", ""]
     },
