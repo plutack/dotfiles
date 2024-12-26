@@ -1,0 +1,7 @@
+# settings for looks
+theme = nord
+# background-opacity = 0.3
+gtk-titlebar = false
+# settings for fonts
+font-family = HackNerdFontMono
+font-size = 15
