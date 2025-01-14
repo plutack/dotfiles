@@ -7,6 +7,7 @@ undercurl = true
 color-modes = true
 cursorline = true
 auto-save = true # save when window looses focus
+end-of-line-diagnostics = "hint"
 # idle-timeout = 0
 # original gutters = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
 gutters = ["diagnostics", "spacer", "diff", "line-numbers", "spacer", "spacer"]
@@ -44,6 +45,10 @@ git-global = false # show files hidden by git globally
 
 [editor.soft-wrap]
 enable = true
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+# other-lines = "error" # still need to play with this config. Recommended settings seems to work the best way
 
 [keys.normal]
 pageup = "half_page_up"
