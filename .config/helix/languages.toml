@@ -187,3 +187,10 @@ language-servers = [ "scls" ]
 # roots = []
 # auto-format = false
 # language-servers = [ "scls" ]
+
+[[language]]
+name = "sql"
+language-servers = [ "sqls" ]
+
+[language-server.sqls]
+command = "sqls"
