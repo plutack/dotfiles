@@ -1,155 +1,53 @@
-[[language]]
-name = "typescript"
-language-id = "typescript"
-scope = "source.ts"
-injection-regex = "^(ts|typescript)$"
-file-types = ["ts"]
-shebangs = ["deno"]
-roots = ["deno.json", "deno.jsonc", "package.json"]
-auto-format = true
-language-servers = ["scls", "deno-lsp"]
-
-[language-server.deno-lsp]
-command = "deno"
-args = ["lsp"]
-
-[language-server.deno-lsp.config.deno]
-enable = true
-
-[[language]]
-name = "tsx"
-language-id = "typescriptreact"
-scope = "source.tsx"
-injection-regex = "^(tsx)$"
-file-types = ["tsx"]
-shebangs = ["deno"]
-roots = ["deno.json", "deno.jsonc", "package.json"]
-auto-format = true
-language-servers = ["deno-lsp"] # add tailwindcss-react lsp?
-
-
-[[language]]
-name = "jsx"
-language-id = "javascriptreact"
-scope = "source.tsx"
-injection-regex = "^(jsx)$"
-file-types = ["jsx"]
-shebangs = ["deno"]
-roots = ["deno.json", "deno.jsonc", "package.json"]
-auto-format = true
-language-servers = ["deno-lsp"] # add tailwindcss-react lsp?
-
-# [[language]]
-# name = "javascript"
-# language-id = "javascript"
-# scope = "source.ts"
-# injection-regex = "^(js|javascript)$"
-# file-types = ["js"]
-# shebangs = ["deno"]
-# roots = ["deno.json", "deno.jsonc", "package.json"]
-# auto-format = true
-# language-servers = ["deno-lsp"]
-
-[[language]]
- name = "json"
- language-servers = [ "vscode-json-language-server" ]
- auto-format = true
-
-[language-server.vscode-json-language-server.config]
- json = { validate = { enable = true }, format = { enable = true } }
- provideFormatter = true
-
-[language-server.vscode-css-language-server.config]
- css = { validate = { enable = true } }
- scss = { validate = { enable = true } }
- less = { validate = { enable = true } }
- provideFormatter = true
-
-[[language]]
- name = "html"
- formatter = { command = 'npx', args = ["prettier", "--parser", "html"] }
- language-servers = [ "vscode-html-language-server", "tailwindcss-react","emmet-language-server"]
- 
-[[language]]
- name = "css"
- formatter = { command = 'npx', args = ["prettier", "--parser", "css"] }
- language-servers = [ "vscode-css-language-server", "tailwindcss-react"]
-
-[language-server.eslint]
- args = ["--stdio"]
- command = "vscode-eslint-language-server"
-
-[language-server.eslint.config]
- format = true
- nodePath = ""
- onIgnoredFiles = "off"
- packageManager = "yarn"
- quiet = false
- rulesCustomizations = []
- run = "onType"
- useESLintClass = false
- validate = "on"
- codeAction = { disableRuleComment = { enable = true, location = "separateLine" }, showDocumentation = { enable = true } }
- codeActionOnSave = { mode = "all" }
- experimental = { }
- problems = { shortenToSingleLine = false }
- workingDirectory = { mode = "auto" }
-
-[language-server.emmet-language-server]
- command="emmet-language-server"
- args = ["--stdio"]
-
-
-[language-server.tailwindcss-react]
- language-id = "typescriptreact"
- command = "tailwindcss-language-server"
- args = ["--stdio"]
- config = {}
-
-[language-server.typescript-language-server.config]
- documentFormatting = false
- hostInfo = "helix"
-
-[language-server.typescript-language-server.config.typescript.inlayHints]
- includeInlayEnumMemberValueHints = true
- includeInlayFunctionLikeReturnTypeHints = true
- includeInlayFunctionParameterTypeHints = true
- includeInlayParameterNameHints = "all"
- includeInlayParameterNameHintsWhenArgumentMatchesName = true
- includeInlayPropertyDeclarationTypeHints = true
- includeInlayVariableTypeHints = true
-
-[language-server.typescript-language-server.config.completions]
-completeFunctionCalls = true
-
- [language-server.typescript-language-server.config.javascript.inlayHints]
- includeInlayEnumMemberValueHints = true
- includeInlayFunctionLikeReturnTypeHints = true
- includeInlayFunctionParameterTypeHints = true
- includeInlayParameterNameHints = "all"
- includeInlayParameterNameHintsWhenArgumentMatchesName = true
- includeInlayPropertyDeclarationTypeHints = true
- includeInlayVariableTypeHints = true
-
-
 # go lsp config
 [language-server.gopls]
 command = "gopls"
 config = { "gofumpt" = true, "local" = "goimports", "semanticTokens" = true, "staticcheck" = true, "verboseOutput" = true, "analyses" = { "fieldalignment" = false, "nilness" = true, unusedparams = true, unusedwrite = true, useany = true }, usePlaceholders = true, completeUnimported = true, hints = { "assignVariableType" = true, "compositeLiteralFields" = true, "compositeLiteralTypes" = true, "constantValues" = true, "functionTypeParameters" = true, "parameterNames" = true, "rangeVariableTypes" = true } }
 
-[[language]]
-name = "go"
-roots = ["go.work", "go.mod"]
-auto-format = true
-comment-token = "//"
-language-servers = [ "scls", "gopls"]
+[language-server.tailwindcss-ls]
+command = "tailwindcss-language-server"
+args = ["--stdio"]
+config = { userLanguages = { templ = "html", "*.templ" = "html" }, tailwindCSS = { experimental = { classRegex = [
+	[
+		"Class(?:es)?[({]([^)}]*)[)}]",
+		"[\"`]([^\"`]*)[\"`]",
+	],
+] } } }
+[language-server.deno-lsp]
+command = "deno"
+args = ["lsp"]
+config.deno.enable = true
+# config.deno.unstable = true 
+# config.deno.config = "/home/plutack/.config/deno/deno.json"
+indent = { tab-width = 4, unit = "    " }
 
+[language-server.vscode-json-language-server.config]
+json = { validate = { enable = true }, format = { enable = true } }
+provideFormatter = true
+ 
+# [language-server.vscode-css-language-server.config]
+# css = { validate = { enable = true } }
+# scss = { validate = { enable = true } }
+# less = { validate = { enable = true } }
+# provideFormatter = true
 
+[language-server.emmet-language-server]
+command="emmet-language-server"
+args = ["--stdio"]
 
+[language-server.typescript-language-server.config]
+documentFormatting = false
+hostInfo = "helix"
+ 
+[language-server.sqls]
+command = "sqls"
 
 # introduce new language server
 [language-server.scls]
 command = "simple-completion-language-server"
+
+[language-server.templ]
+command = "templ"
+args = [ "lsp" ]
 
 [language-server.scls.config]
 max_completion_items = 20            # set max completion results len for each group: words, snippets, unicode-input
@@ -161,23 +59,18 @@ feature_unicode_input = true         # enable "unicode input"
 feature_paths = true                 # enable path completion
 feature_citations = false            # enable citation completion (only on `citation` feature enabled)
 
-
 # write logs to /tmp/completion.log
 [language-server.scls.environment]
 RUST_LOG = "info,simple-completion-language-server=info"
 LOG_FILE = "/tmp/completion.log"
 
-# append language server to existed languages
-# [[language]]
-# name = "rust"
-# language-servers = [ "scls", "rust-analyzer" ]
-
 [[language]]
 name = "git-commit"
 language-servers = [ "scls" ]
 
-# etc..
-
+[[language]]
+name = "sql"
+language-servers = [ "sqls" ]
 # introduce a new language to enable completion on any doc by forcing set language with :set-language stub
 # [[language]]
 # name = "stub"
@@ -187,10 +80,89 @@ language-servers = [ "scls" ]
 # roots = []
 # auto-format = false
 # language-servers = [ "scls" ]
+ 
+[[language]]
+name = "typescript"
+language-id = "typescript"
+scope = "source.ts"
+injection-regex = "^(ts|typescript)$"
+file-types = ["ts"]
+shebangs = ["deno"]
+roots = ["deno.json", "deno.jsonc", "package.json"]
+auto-format = true
+language-servers = ["scls", "deno-lsp"]
 
 [[language]]
-name = "sql"
-language-servers = [ "sqls" ]
+name = "tsx"
+language-id = "typescriptreact"
+scope = "source.tsx"
+injection-regex = "^(tsx)$"
+file-types = ["tsx"]
+shebangs = ["deno"]
+roots = ["deno.json", "deno.jsonc", "package.json"]
+auto-format = true
+language-servers = [ "tailwindcss-ls", "deno-lsp" ] 
 
-[language-server.sqls]
-command = "sqls"
+
+[[language]]
+name = "jsx"
+language-id = "javascriptreact"
+scope = "source.tsx"
+injection-regex = "^(jsx)$"
+file-types = ["jsx"]
+shebangs = ["deno"]
+roots = ["deno.json", "deno.jsonc", "package.json"]
+auto-format = true
+language-servers = [ "tailwindcss-ls", "deno-lsp" ] #
+
+[[language]]
+name = "javascript"
+language-id = "javascript"
+scope = "source.ts"
+injection-regex = "^(js|javascript)$"
+file-types = ["js"]
+shebangs = ["deno"]
+roots = ["deno.json", "deno.jsonc", "package.json"]
+auto-format = true
+language-servers = [ "tailwindcss-ls", "deno-lsp" ] #
+
+
+[[language]]
+name = "json"
+language-servers = [ "vscode-json-language-server" ]
+auto-format = true
+
+
+[[language]]
+name = "html"
+auto-format = true
+formatter = { command = "prettier", args = [ "--parser", "html"] }
+language-servers = [ "tailwindcss-ls", "vscode-html-language-server", "emmet-language-server", "scls"]
+ 
+
+[[language]]
+name = "css"
+language-id = "css"
+scope = "source.css"
+file-types = ["css"]
+language-servers = [ "vscode-css-language-server","tailwindcss-ls", "scls"]
+formatter = { command = 'prettier', args = ["--parser", "css"] }
+auto-format = true
+
+[[language]]
+name = "go"
+roots = ["go.work", "go.mod"]
+auto-format = true
+comment-token = "//"
+formatter = { command = "goimports"}
+language-servers = [ "scls", "gopls"]
+
+[[language]]
+name = "templ"
+scope = "source.templ"
+auto-format = true
+formatter = { command = "templ", args = [ "fmt" ]}
+language-servers = [ "tailwindcss-ls", "templ" ]
+indent = { tab-width = 4, unit = "    " }
+
+

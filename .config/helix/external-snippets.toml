@@ -18,3 +18,11 @@ path = "snippets/javascript/typescript.json"
 [[sources.paths]]
 scope = ["go"]
 path = "snippets/go.json"
+
+[[sources.paths]]
+scope = ["html"]
+path = "snippets/html.json"
+
+[[sources.paths]]
+scope = ["css"]
+path = "snippets/css.json"
