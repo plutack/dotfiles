@@ -118,3 +118,4 @@ F = "file_picker_in_current_buffer_directory" # useful for accessing sibling fil
 [keys.normal.space.c]
 g = ":sh zellij run -f -n go -- go run ."
 d = ":yank-diagnostic"
+f = ":w"

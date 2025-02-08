@@ -26,3 +26,7 @@ path = "snippets/html.json"
 [[sources.paths]]
 scope = ["css"]
 path = "snippets/css.json"
+
+[[sources.paths]]
+scope = ["sql"]
+path = "snippets/sql.json"

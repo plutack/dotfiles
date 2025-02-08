@@ -4,14 +4,16 @@ command = "gopls"
 config = { "gofumpt" = true, "local" = "goimports", "semanticTokens" = true, "staticcheck" = true, "verboseOutput" = true, "analyses" = { "fieldalignment" = false, "nilness" = true, unusedparams = true, unusedwrite = true, useany = true }, usePlaceholders = true, completeUnimported = true, hints = { "assignVariableType" = true, "compositeLiteralFields" = true, "compositeLiteralTypes" = true, "constantValues" = true, "functionTypeParameters" = true, "parameterNames" = true, "rangeVariableTypes" = true } }
 
 [language-server.tailwindcss-ls]
-command = "tailwindcss-language-server"
-args = ["--stdio"]
-config = { userLanguages = { templ = "html", "*.templ" = "html" }, tailwindCSS = { experimental = { classRegex = [
-	[
-		"Class(?:es)?[({]([^)}]*)[)}]",
-		"[\"`]([^\"`]*)[\"`]",
-	],
-] } } }
+# command = "tailwindcss-language-server"
+# args = [ "--stdio" ]
+config = {userLanguages = { templ = "html", "*.templ" = "html" } }
+
+
+# [language-server.tailwindcss-ls.config]
+# command = "tailwindcss-language-server"
+# args = [ "--stdio" ]
+# tailwindCSS = {includeLanguages = { templ = "html", "*.templ" = "html" } }
+
 [language-server.deno-lsp]
 command = "deno"
 args = ["lsp"]
@@ -24,11 +26,11 @@ indent = { tab-width = 4, unit = "    " }
 json = { validate = { enable = true }, format = { enable = true } }
 provideFormatter = true
  
-# [language-server.vscode-css-language-server.config]
-# css = { validate = { enable = true } }
-# scss = { validate = { enable = true } }
-# less = { validate = { enable = true } }
-# provideFormatter = true
+[language-server.vscode-css-language-server.config]
+css = { validate = { enable = true } }
+scss = { validate = { enable = true } }
+less = { validate = { enable = true } }
+provideFormatter = true
 
 [language-server.emmet-language-server]
 command="emmet-language-server"
@@ -45,9 +47,10 @@ command = "sqls"
 [language-server.scls]
 command = "simple-completion-language-server"
 
+
 [language-server.templ]
 command = "templ"
-args = [ "lsp" ]
+# args = [ "lsp" , "-log", "./templ.log"]
 
 [language-server.scls.config]
 max_completion_items = 20            # set max completion results len for each group: words, snippets, unicode-input
@@ -64,13 +67,8 @@ feature_citations = false            # enable citation completion (only on `cita
 RUST_LOG = "info,simple-completion-language-server=info"
 LOG_FILE = "/tmp/completion.log"
 
-[[language]]
-name = "git-commit"
-language-servers = [ "scls" ]
 
-[[language]]
-name = "sql"
-language-servers = [ "sqls" ]
+
 # introduce a new language to enable completion on any doc by forcing set language with :set-language stub
 # [[language]]
 # name = "stub"
@@ -81,6 +79,10 @@ language-servers = [ "sqls" ]
 # auto-format = false
 # language-servers = [ "scls" ]
  
+[[language]]
+name = "sql"
+language-servers = [ "sqls" ]
+
 [[language]]
 name = "typescript"
 language-id = "typescript"
@@ -107,7 +109,7 @@ language-servers = [ "tailwindcss-ls", "deno-lsp" ]
 [[language]]
 name = "jsx"
 language-id = "javascriptreact"
-scope = "source.tsx"
+scope = "source.jsx"
 injection-regex = "^(jsx)$"
 file-types = ["jsx"]
 shebangs = ["deno"]
@@ -137,7 +139,7 @@ auto-format = true
 name = "html"
 auto-format = true
 formatter = { command = "prettier", args = [ "--parser", "html"] }
-language-servers = [ "tailwindcss-ls", "vscode-html-language-server", "emmet-language-server", "scls"]
+language-servers = [ "tailwind-ls", "vscode-html-language-server", "emmet-language-server", "scls"]
  
 
 [[language]]
@@ -162,7 +164,7 @@ name = "templ"
 scope = "source.templ"
 auto-format = true
 formatter = { command = "templ", args = [ "fmt" ]}
-language-servers = [ "tailwindcss-ls", "templ" ]
+language-servers = [ "tailwindcss-ls", "templ", "emmet-language-server" ]
 indent = { tab-width = 4, unit = "    " }
 
 
