@@ -4,6 +4,7 @@
 	signingKey = /home/plutack/.ssh/id_ed25519.pub
 [push]
 	autoSetupRemote = true
+	followTags = true
 [gpg]
 	format = ssh
 [commit]
@@ -23,10 +24,13 @@
   features = chameleon
 
 [merge]
-  conflictstyle = diff3
+	conflictstyle = zdiff3
 
 [diff]
-  colorMoved = default
+	colormoved = plain
+	algorithm = histogram
+	mnemonicPrefix = true
+	renames = true
 
 [delta "chameleon"]
   # features
@@ -87,3 +91,24 @@
 	
 [init]
 	defaultBranch = main
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
+[help]
+	autoCorrect = prompt
+[rerere]
+	enabled = true
+	autoUpdate = true
+[rebase]
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
+[pull]
+	rebase = true
