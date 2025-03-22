@@ -25,13 +25,13 @@ classRegex = [
 # args = [ "--stdio" ]
 # tailwindCSS = {includeLanguages = { templ = "html", "*.templ" = "html" } }
 
-[language-server.deno-lsp]
-command = "deno"
-args = ["lsp"]
-config.deno.enable = true
-# config.deno.unstable = true 
-# config.deno.config = "/home/plutack/.config/deno/deno.json"
-indent = { tab-width = 4, unit = "    " }
+# [language-server.deno-lsp]
+# command = "deno"
+# args = ["lsp"]
+# config.deno.enable = true
+# # config.deno.unstable = true 
+# # config.deno.config = "/home/plutack/.config/deno/deno.json"
+# indent = { tab-width = 4, unit = "    " }
 
 [language-server.vscode-json-language-server.config]
 json = { validate = { enable = true }, format = { enable = true } }
@@ -43,7 +43,7 @@ scss = { validate = { enable = true } }
 less = { validate = { enable = true } }
 provideFormatter = true
 
-[language-server.emmet-language-server]
+[language-server.emmet-ls]
 command="emmet-language-server"
 args = ["--stdio"]
 
@@ -95,55 +95,56 @@ LOG_FILE = "/tmp/completion.log"
 name = "sql"
 language-servers = [ "sqls" ]
 
-[[language]]
-name = "typescript"
-language-id = "typescript"
-scope = "source.ts"
-injection-regex = "^(ts|typescript)$"
-file-types = ["ts"]
-shebangs = ["deno"]
-roots = ["deno.json", "deno.jsonc", "package.json"]
-auto-format = true
-language-servers = ["scls", "deno-lsp"]
+# [[language]]
+# name = "typescript"
+# language-id = "typescript"
+# scope = "source.ts"
+# injection-regex = "^(ts|typescript)$"
+# file-types = ["ts"]
+# shebangs = ["deno"]
+# roots = ["deno.json", "deno.jsonc", "package.json"]
+# auto-format = true
+# language-servers = ["scls", "deno-lsp"]
 
-[[language]]
-name = "tsx"
-language-id = "typescriptreact"
-scope = "source.tsx"
-injection-regex = "^(tsx)$"
-file-types = ["tsx"]
-shebangs = ["deno"]
-roots = ["deno.json", "deno.jsonc", "package.json"]
-auto-format = true
-language-servers = [ "tailwindcss-ls", "deno-lsp" ] 
+# [[language]]
+# name = "tsx"
+# language-id = "typescriptreact"
+# scope = "source.tsx"
+# injection-regex = "^(tsx)$"
+# file-types = ["tsx"]
+# shebangs = ["deno"]
+# roots = ["deno.json", "deno.jsonc", "package.json"]
+# auto-format = true
+# language-servers = [ "tailwindcss-ls", "deno-lsp" ] 
 
 
-[[language]]
-name = "jsx"
-language-id = "javascriptreact"
-scope = "source.jsx"
-injection-regex = "^(jsx)$"
-file-types = ["jsx"]
-shebangs = ["deno"]
-roots = ["deno.json", "deno.jsonc", "package.json"]
-auto-format = true
-language-servers = [ "tailwindcss-ls", "deno-lsp" ] #
+# [[language]]
+# name = "jsx"
+# language-id = "javascriptreact"
+# scope = "source.jsx"
+# injection-regex = "^(jsx)$"
+# file-types = ["jsx"]
+# shebangs = ["deno"]
+# roots = ["deno.json", "deno.jsonc", "package.json"]
+# auto-format = true
+# language-servers = [ "tailwindcss-ls", "deno-lsp" ] #
 
-[[language]]
-name = "javascript"
-language-id = "javascript"
-scope = "source.ts"
-injection-regex = "^(js|javascript)$"
-file-types = ["js"]
-shebangs = ["deno"]
-roots = ["deno.json", "deno.jsonc", "package.json"]
-auto-format = true
-language-servers = [ "tailwindcss-ls", "deno-lsp" ] #
+# [[language]]
+# name = "javascript"
+# language-id = "javascript"
+# scope = "source.ts"
+# injection-regex = "^(js|javascript)$"
+# file-types = ["js"]
+# shebangs = ["deno"]
+# roots = ["deno.json", "deno.jsonc", "package.json"]
+# auto-format = true
+# language-servers = [ "tailwindcss-ls", "deno-lsp" ] #
 
 
 [[language]]
 name = "json"
 language-servers = [ "vscode-json-language-server" ]
+formatter = { command = "prettier", args = [ "--parser", "json"] }
 auto-format = true
 
 
@@ -180,3 +181,52 @@ language-servers = [ "tailwindcss-ls", "templ", "emmet-language-server" ]
 indent = { tab-width = 4, unit = "    " }
 
 
+[language-server.vscode-eslint-language-server]
+command = "vscode-eslint-language-server"
+args = ["--stdio"]
+
+[language-server.vscode-eslint-language-server.config]
+validate = "on"
+experimental = { useFlatConfig = false }
+rulesCustomizations = []
+run = "onType"
+problems = { shortenToSingleLine = false }
+nodePath = ""
+
+[language-server.vscode-eslint-language-server.config.codeAction.disableRuleComment]
+enable = true
+location = "separateLine"
+
+[language-server.vscode-eslint-language-server.config.codeAction.showDocumentation]
+enable = true
+
+[language-server.vscode-eslint-language-server.config.workingDirectory]
+mode = "location"
+
+[[language]]
+name = "typescript"
+language-servers = [ "typescript-language-server", "vscode-eslint-language-server", "emmet-ls" ]
+formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
+# formatter = { command = "dprint", args = [ "fmt", "--stdin", "typescript" ] }
+auto-format = true
+
+[[language]]
+name = "tsx"
+language-servers = [ "typescript-language-server", "vscode-eslint-language-server", "emmet-ls" ]
+formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
+# formatter = { command = "dprint", args = [ "fmt", "--stdin", "tsx" ] }
+auto-format = true
+
+[[language]]
+name = "javascript"
+language-servers = [ "typescript-language-server", "vscode-eslint-language-server", "emmet-ls" ]
+formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
+# formatter = { command = "dprint", args = [ "fmt", "--stdin", "javascript" ] }
+auto-format = true
+
+[[language]]
+name = "jsx"
+language-servers = [ "typescript-language-server", "vscode-eslint-language-server", "emmet-ls" ]
+formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
+# formatter = { command = "dprint", args = [ "fmt", "--stdin", "jsx" ] }
+auto-format = true
