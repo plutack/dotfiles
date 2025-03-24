@@ -19,7 +19,7 @@ keybinds clear-defaults=true {
         bind "Alt s" { SwitchToMode "search"; }
         bind "Ctrl t" { NewTab; }
         bind "Alt w" {
-            LaunchOrFocusPlugin "file:/home/plutack/.config/zellij/plugins/room.wasm" {
+           LaunchOrFocusPlugin "file:/home/plutack/.config/zellij/plugins/room.wasm" {
                 floating true
                 ignore_case "true"
             }
@@ -413,7 +413,7 @@ theme "Nord"
 // The name of the default layout to load on startup
 // Default: "default"
 // 
-default_layout "default"
+default_layout "workspace"
  
 // The folder in which Zellij will look for layouts
 // (Requires restart)
