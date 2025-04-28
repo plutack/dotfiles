@@ -1,0 +1,33 @@
+#!/bin/bash
+# ~/.yadm/bootstrap
+# Bootstrap script for Garuda Linux setup
+set -e
+set -u
+
+echo "🔧 Starting Garuda bootstrap..."
+
+# --- Update system with garuda-update ---
+echo "🔄 Running garuda-update..."
+garuda-update
+
+# --- Install essential packages with paru ---
+echo "📦 Installing base packages with paru..."
+paru -S --needed --noconfirm \
+    git \
+    helix-git \
+    zellij \
+    curl \
+    wget \
+    unzip \
+    openssh \
+
+
+
+# --- Ensure SSHD is enabled ---
+echo "🔐 Enabling and starting sshd service..."
+sudo systemctl enable sshd
+sudo systemctl start sshd
+
+# --- Create Development Directory ---
+mkdir -p ~/projects 
+echo "✅ Garuda bootstrap complete!"
