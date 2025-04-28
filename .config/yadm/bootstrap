@@ -30,14 +30,14 @@ paru -S --needed --noconfirm \
     templ \                   # Templating engine for Go
     sqls \                    # SQL language server for database development
     scls \                    # word completion language server for helix
-
+    zed \                     # code editor bye bye to VS code
+    evremap-git \             # Keyboard remapper
 # Terminal and shell utilities
     zellij \                  # Terminal workspace and multiplexer
     curl \                    # Command-line tool for transferring data with URLs
     wget \                    # Command-line tool for downloading files
     unzip \                   # Utility to extract compressed files
     openssh \                 # OpenSSH tools for secure communication
-    zed \                     # code editor bye bye to VS code
 
 # Docker & containers
     docker \                  # Docker CLI for container management
@@ -47,17 +47,34 @@ paru -S --needed --noconfirm \
 
 
 # Browsing and web tools
-    zen-browser-bin           # Zen browser for a distraction-free browsing experience
+    zen-browser-bin \        # Zen browser for a distraction-free browsing experience
 
 # Mounting iOS devices
-    ios-mount-git             # Tools for mounting iOS devices in Linux
-
+    ios-mount-git \            # For mounting iOS devices in Linux
+# Fonts
+    otf-overpass-nerd \        # For GUI
+    ttf-fantasque-nerd         # For terminal
 echo "✅ Essential packages installed!"
 
-# --- Ensure SSHD is enabled ---
+# Ensure SSHD is enabled
 echo "🔐 Enabling and starting sshd service..."
 sudo systemctl enable sshd
 sudo systemctl start sshd
+
+# 📂 Copy the evremap.service file from the Desktop to systemd system directory
+sudo cp ~/evremap.service /usr/lib/systemd/system/
+
+# 🔧 Set appropriate permissions for the service file
+sudo chmod 644 /usr/lib/systemd/system/evremap.service
+
+# Start service
+sudo systemctl daemon-reload
+sudo systemctl enable evremap.service
+sudo systemctl start evremap.service
+
+# 🔧 Change the default shell to fish for the current user
+chsh -s $(which fish)
+echo "✅ Fish shell set as the default."
 
 # --- Create Development Directory ---
 mkdir -p ~/projects 
