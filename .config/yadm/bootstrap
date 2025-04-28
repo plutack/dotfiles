@@ -10,20 +10,49 @@ echo "🔧 Starting Garuda bootstrap..."
 echo "🔄 Running garuda-update..."
 garuda-update
 
-# --- Install essential packages with paru ---
+# 📦 Install essential packages with paru
 echo "📦 Installing base packages with paru..."
+
+# Development tools
 paru -S --needed --noconfirm \
-    git \
-    github-cli \
-    helix-git \
-    zellij \
-    curl \
-    wget \
-    unzip \
-    openssh \
-    zed-git \
-    ios-mount-git \
-    zen-browser-bin 
+# Productivity tools
+    lazygit \                 # Terminal-based Git UI
+    tailwindcss-extra-bin \   # Additional tools for working with Tailwind CSS with daisy UI components prebuilt
+    emmet-language-server \   # Emmet support for fast HTML and CSS workflow
+    prettier \                # Code formatter for consistent code style
+    git \                     # Git version control system
+    github-cli \              # GitHub CLI for interacting with GitHub
+    helix-git \               # Helix text editor with Git integration
+    go \                      # Go programming language
+    vscode-json-languageserver \ # Language server for JSON files in VS Code
+    vscode-html-languageserver \ # Language server for HTML files in VS Code
+    vscode-css-languageserver \ # Language server for CSS files in VS Code
+    templ \                   # Templating engine for Go
+    sqls \                    # SQL language server for database development
+    scls \                    # word completion language server for helix
+
+# Terminal and shell utilities
+    zellij \                  # Terminal workspace and multiplexer
+    curl \                    # Command-line tool for transferring data with URLs
+    wget \                    # Command-line tool for downloading files
+    unzip \                   # Utility to extract compressed files
+    openssh \                 # OpenSSH tools for secure communication
+    zed \                     # code editor bye bye to VS code
+
+# Docker & containers
+    docker \                  # Docker CLI for container management
+    docker-compose \          # Docker Compose for defining and running multi-container Docker applications
+    docker-buildx \           # Docker build extension for advanced build features
+    lazydocker \              # Docker UI for easy container management
+
+
+# Browsing and web tools
+    zen-browser-bin           # Zen browser for a distraction-free browsing experience
+
+# Mounting iOS devices
+    ios-mount-git             # Tools for mounting iOS devices in Linux
+
+echo "✅ Essential packages installed!"
 
 # --- Ensure SSHD is enabled ---
 echo "🔐 Enabling and starting sshd service..."
