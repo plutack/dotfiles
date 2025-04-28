@@ -14,12 +14,14 @@ garuda-update
 echo "📦 Installing base packages with paru..."
 paru -S --needed --noconfirm \
     git \
+    github-cli \
     helix-git \
     zellij \
     curl \
     wget \
     unzip \
     openssh \
+    zed-git \
 
 
 
