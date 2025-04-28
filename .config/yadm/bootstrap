@@ -22,8 +22,8 @@ paru -S --needed --noconfirm \
     unzip \
     openssh \
     zed-git \
-
-
+    ios-mount-git \
+    zen-browser-bin 
 
 # --- Ensure SSHD is enabled ---
 echo "🔐 Enabling and starting sshd service..."
