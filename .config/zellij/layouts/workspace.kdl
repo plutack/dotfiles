@@ -168,7 +168,6 @@ default_tab_template {
     tab name="main"
     tab name="extra"
     tab name="fish#1"
-    tab name="fish#2"
     tab name="vpn"
     tab name="misc" split_direction="vertical" {
         pane
