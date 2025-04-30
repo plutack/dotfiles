@@ -20,6 +20,9 @@ select = "underline"
 display-messages = true
 # display-inlay-hints = true
 
+[editor.smart-tab]
+enable = false
+
 [editor.statusline]
 mode.normal = "NORMAL"
 mode.insert = "INSERT"

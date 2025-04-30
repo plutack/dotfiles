@@ -38,6 +38,7 @@ paru -S --needed --noconfirm \
     wget \                    # Command-line tool for downloading files
     unzip \                   # Utility to extract compressed files
     openssh \                 # OpenSSH tools for secure communication
+    obsidian \                # Keep notes on task and for drafting blog notes
 
 # Docker & containers
     docker \                  # Docker CLI for container management
