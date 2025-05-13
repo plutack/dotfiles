@@ -32,6 +32,7 @@ paru -S --needed --noconfirm \
     scls \                    # word completion language server for helix
     zed \                     # code editor bye bye to VS code
     evremap-git \             # Keyboard remapper
+    go-task \                 # Byeee to Make probably
 # Terminal and shell utilities
     zellij \                  # Terminal workspace and multiplexer
     curl \                    # Command-line tool for transferring data with URLs
