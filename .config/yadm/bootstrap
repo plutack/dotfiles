@@ -40,6 +40,8 @@ paru -S --needed --noconfirm \
     unzip \                   # Utility to extract compressed files
     openssh \                 # OpenSSH tools for secure communication
     obsidian \                # Keep notes on task and for drafting blog notes
+    git-delta\                # Diff viewer for git
+    ov-bin\                   # Pager for git/delta
 
 # Docker & containers
     docker \                  # Docker CLI for container management
