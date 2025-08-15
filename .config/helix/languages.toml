@@ -228,3 +228,7 @@ formatter = { command = "biome", args = [ "format", "--stdin-file-path", "a.jsx"
 # formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
 # formatter = { command = "dprint", args = [ "fmt", "--stdin", "jsx" ] }
 auto-format = true
+
+[[language]]
+name = "prisma"
+auto-format = true
