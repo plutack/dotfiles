@@ -123,4 +123,4 @@ g = ":sh zellij run -f -n go -- go run ."
 d = ":yank-diagnostic"
 f = ":w"
 r = ":reset-diff-change"
-y = [ ':sh rm -f /tmp/yazi-path', ':insert-output yazi %{buffer_name} --chooser-file=/tmp/yazi-path', ":open %sh{cat /tmp/yazi-path}", ":redraw" ]
+y = ":sh zellij run -n Yazi -c -f -x 10%% -y 10%% --width 80%% --height 80%% -- fish ~/.config/helix/yazi-picker.fish open"

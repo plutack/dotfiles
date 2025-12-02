@@ -197,38 +197,65 @@ enable = true
 [language-server.vscode-eslint-language-server.config.workingDirectory]
 mode = "location"
 
+# [[language]]
+# name = "typescript"
+# language-servers = [ "typescript-language-server", "biome", "emmet-ls" ]
+# formatter = { command = "biome", args = [ "format", "--fix", "--stdin-file-path", "a.ts" ] }
+# # formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
+# # formatter = { command = "dprint", args = [ "fmt", "--stdin", "typescript" ] }
+# auto-format = true
+
+# [[language]]
+# name = "tsx"
+# language-servers = [ "typescript-language-server", "biome", "emmet-ls" ]
+# formatter = { command = "biome", args = [ "format", "--fix", "--stdin-file-path", "a.tsx" ] }
+# # formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
+# # formatter = { command = "dprint", args = [ "fmt", "--stdin", "tsx" ] }
+# auto-format = true
+
+# [[language]]
+# name = "javascript"
+# language-servers = [ "typescript-language-server", "biome", "emmet-ls" ]
+# formatter = { command = "biome", args = [ "format", "--fix", "--stdin-file-path", "a.js" ] }
+# # formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
+# # formatter = { command = "dprint", args = [ "fmt", "--stdin", "javascript" ] }
+# auto-format = true
+
+# [[language]]
+# name = "jsx"
+# language-servers = [ "typescript-language-server", "biome", "emmet-ls" ]
+# formatter = { command = "biome", args = [ "format", "--fix", "--stdin-file-path", "a.jsx" ] }
+# # formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
+# # formatter = { command = "dprint", args = [ "fmt", "--stdin", "jsx" ] }
+# auto-format = true
+
+
+[[language]]
+name = "javascript"
+language-servers = [ "biome",{ name = "typescript-language-server", except-features = [ "format" ] }  ]
+auto-format = true
+
 [[language]]
 name = "typescript"
-language-servers = [ "typescript-language-server", "biome", "emmet-ls" ]
-formatter = { command = "biome", args = [ "format", "--stdin-file-path", "a.ts" ] }
-# formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
-# formatter = { command = "dprint", args = [ "fmt", "--stdin", "typescript" ] }
+language-servers = [ "biome",{ name = "typescript-language-server", except-features = [ "format" ] }  ]
 auto-format = true
 
 [[language]]
 name = "tsx"
-language-servers = [ "typescript-language-server", "biome", "emmet-ls" ]
-formatter = { command = "biome", args = [ "format", "--stdin-file-path", "a.tsx" ] }
-# formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
-# formatter = { command = "dprint", args = [ "fmt", "--stdin", "tsx" ] }
 auto-format = true
-
-[[language]]
-name = "javascript"
-language-servers = [ "typescript-language-server", "biome", "emmet-ls" ]
-formatter = { command = "biome", args = [ "format", "--stdin-file-path", "a.js" ] }
-# formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
-# formatter = { command = "dprint", args = [ "fmt", "--stdin", "javascript" ] }
-auto-format = true
+language-servers = [ "biome",{ name = "typescript-language-server", except-features = [ "format" ] }  ]
 
 [[language]]
 name = "jsx"
-language-servers = [ "typescript-language-server", "biome", "emmet-ls" ]
-formatter = { command = "biome", args = [ "format", "--stdin-file-path", "a.jsx" ] }
-# formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
-# formatter = { command = "dprint", args = [ "fmt", "--stdin", "jsx" ] }
 auto-format = true
+language-servers = [ "biome",{ name = "typescript-language-server", except-features = [ "format" ] }  ]
 
 [[language]]
+name = "json"
+language-servers = [ "biome",{ name = "typescript-language-server", except-features = [ "format" ] }  ]
+
+
+[[language]]
+
 name = "prisma"
 auto-format = true

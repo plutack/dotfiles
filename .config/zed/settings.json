@@ -12,30 +12,29 @@
       "milliseconds": 1500
     }
   },
-  "buffer_font_family": "FantasqueSansMNerdFont",
-  "buffer_font_weight": 16,
-  "enable_preview_from_code_navigation": true,
+  "buffer_font_family": "FantasqueSansM Nerd Font Mono",
+  "buffer_font_weight": 100,
   "load_direnv": "shell_hook",
   "features": {
-    "inline_completion_provider": "copilot"
+    "edit_prediction_provider": "copilot"
   },
-  "assistant": {
+  "agent": {
     "default_model": {
       "provider": "google",
-      "model": "gemini-2.5-flash"
-    },
-    "version": "2"
+      "model": "gemini-3.0-pro"
+    }
   },
-  "ui_font_size": 18,
-  "buffer_font_size": 18,
-  "theme": {
-    "mode": "system",
-    "light": "Ayu Mirage",
-    "dark": "One Dark"
-  },
+  "ui_font_size": 12,
+  "buffer_font_size": 12,
+  "theme": "One Dark",
   "vim_mode": true,
   "vim": {
     "default_mode": "helix_normal",
     "toggle_relative_line_numbers": true
+  },
+  "languages": {
+    "JSON": {
+      "language_servers": ["biome"]
+    }
   }
 }
