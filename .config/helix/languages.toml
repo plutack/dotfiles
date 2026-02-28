@@ -1,261 +1,270 @@
-# go lsp config
+# ============================================================
+# LANGUAGE SERVERS
+# ============================================================
+
+# ----------------------------
+# Go (gopls)
+# ----------------------------
 [language-server.gopls]
 command = "gopls"
-config = { "gofumpt" = true, "local" = "goimports", "semanticTokens" = true, "staticcheck" = true, "verboseOutput" = true, "analyses" = { "fieldalignment" = false, "nilness" = true, unusedparams = true, unusedwrite = true, useany = true }, usePlaceholders = true, completeUnimported = true, hints = { "assignVariableType" = true, "compositeLiteralFields" = true, "compositeLiteralTypes" = true, "constantValues" = true, "functionTypeParameters" = true, "parameterNames" = true, "rangeVariableTypes" = true } }
 
+[language-server.gopls.config]
+gofumpt = true
+local = "goimports"
+semanticTokens = true
+staticcheck = true
+verboseOutput = true
+usePlaceholders = true
+completeUnimported = true
+
+[language-server.gopls.config.analyses]
+fieldalignment = false
+nilness = true
+unusedparams = true
+unusedwrite = true
+useany = true
+
+[language-server.gopls.config.hints]
+assignVariableType = true
+compositeLiteralFields = true
+compositeLiteralTypes = true
+constantValues = true
+functionTypeParameters = true
+parameterNames = true
+rangeVariableTypes = true
+
+# ----------------------------
+# Tailwind
+# ----------------------------
 [language-server.tailwindcss-ls]
 command = "tailwindcss-language-server"
-args = [ "--stdio" ]
-
-[language-server.biome]
-command = "biome"
-args = [ "lsp-proxy" ]
+args = ["--stdio"]
 
 [language-server.tailwindcss-ls.config.userLanguages]
-"*.templ" = "html"
 templ = "html"
+"*.templ" = "html"
 
 [language-server.tailwindcss-ls.config.tailwindCSS.experimental]
 classRegex = [
-        # Match class attributes in HTML-like syntax
-        "class\\s*=\\s*\"([^\"]*)\"",
+  "class\\s*=\\s*\"([^\"]*)\"",
+  "class\\(([^)]*)\\)"
+]
 
-        # Match Templ's function-like class syntax: class(...)
-        "class\\(([^)]*)\\)"
-      ] 
-
-# [language-server.tailwindcss-ls.config
-# command = "tailwindcss-language-server"
-# args = [ "--stdio" ]
-# tailwindCSS = {includeLanguages = { templ = "html", "*.templ" = "html" } }
-
-# [language-server.deno-lsp]
-# command = "deno"
-# args = ["lsp"]
-# config.deno.enable = true
-# # config.deno.unstable = true 
-# # config.deno.config = "/home/plutack/.config/deno/deno.json"
-# indent = { tab-width = 4, unit = "    " }
-
- 
-[language-server.vscode-css-language-server.config]
-css = { validate = { enable = true } }
-scss = { validate = { enable = true } }
-less = { validate = { enable = true } }
-provideFormatter = true
-
-[language-server.emmet-ls]
-command="emmet-language-server"
+# ----------------------------
+# TypeScript / JavaScript
+# ----------------------------
+[language-server.vtsls]
+command = "vtsls"
 args = ["--stdio"]
 
 [language-server.typescript-language-server.config]
 documentFormatting = false
 hostInfo = "helix"
- 
+
+# ----------------------------
+# Biome
+# ----------------------------
+[language-server.biome]
+command = "biome"
+args = ["lsp-proxy"]
+
+# ----------------------------
+# ESLint
+# ----------------------------
+[language-server.eslint]
+command = "vscode-eslint-language-server"
+args = ["--stdio"]
+
+[language-server.eslint.config]
+run = "onSave"
+validate = "on"
+useFlatConfig = false
+experimental = { useFlatConfig = false }
+format = { enable = true }
+codeActionsOnSave = { mode = "all", "source.fixAll.eslint" = true }
+
+# ----------------------------
+# CSS / HTML
+# ----------------------------
+[language-server.vscode-css-language-server.config]
+css  = { validate = { enable = true } }
+scss = { validate = { enable = true } }
+less = { validate = { enable = true } }
+provideFormatter = true
+
+# ----------------------------
+# Emmet
+# ----------------------------
+[language-server.emmet-ls]
+command = "emmet-language-server"
+args = ["--stdio"]
+
+# ----------------------------
+# SQL
+# ----------------------------
 [language-server.sqls]
 command = "sqls"
 
-# introduce new language server
+# ----------------------------
+# Simple Completion LSP
+# ----------------------------
 [language-server.scls]
 command = "simple-completion-language-server"
 
-
-[language-server.templ]
-command = "templ"
-args = [ "lsp" ] 
-# args = [ "lsp" , "-log", "./templ.log"]
-
 [language-server.scls.config]
-max_completion_items = 20            # set max completion results len for each group: words, snippets, unicode-input
-snippets_first = true                # completions will return before snippets by default
-snippets_inline_by_word_tail = false # suggest snippets by WORD tail, for example text `xsq|` become `x^2|` when snippet `sq` has body `^2`
-feature_words = true                 # enable completion by word
-feature_snippets = true              # enable snippets
-feature_unicode_input = true         # enable "unicode input"
-feature_paths = true                 # enable path completion
-feature_citations = false            # enable citation completion (only on `citation` feature enabled)
+max_completion_items = 20
+snippets_first = true
+snippets_inline_by_word_tail = false
+feature_words = true
+feature_snippets = true
+feature_unicode_input = true
+feature_paths = true
+feature_citations = false
 
-# write logs to /tmp/completion.log
 [language-server.scls.environment]
 RUST_LOG = "info,simple-completion-language-server=info"
 LOG_FILE = "/tmp/completion.log"
 
+# ----------------------------
+# Templ
+# ----------------------------
+[language-server.templ]
+command = "templ"
+args = ["lsp"]
 
 
-# introduce a new language to enable completion on any doc by forcing set language with :set-language stub
-# [[language]]
-# name = "stub"
-# scope = "text.stub"
-# file-types = []
-# shebangs = []
-# roots = []
-# auto-format = false
-# language-servers = [ "scls" ]
- 
-[[language]]
-name = "sql"
-language-servers = [ "sqls" ]
+# ============================================================
+# LANGUAGE DEFINITIONS
+# ============================================================
 
-# [[language]]
-# name = "typescript"
-# language-id = "typescript"
-# scope = "source.ts"
-# injection-regex = "^(ts|typescript)$"
-# file-types = ["ts"]
-# shebangs = ["deno"]
-# roots = ["deno.json", "deno.jsonc", "package.json"]
-# auto-format = true
-# language-servers = ["scls", "deno-lsp"]
-
-# [[language]]
-# name = "tsx"
-# language-id = "typescriptreact"
-# scope = "source.tsx"
-# injection-regex = "^(tsx)$"
-# file-types = ["tsx"]
-# shebangs = ["deno"]
-# roots = ["deno.json", "deno.jsonc", "package.json"]
-# auto-format = true
-# language-servers = [ "tailwindcss-ls", "deno-lsp" ] 
-
-
-# [[language]]
-# name = "jsx"
-# language-id = "javascriptreact"
-# scope = "source.jsx"
-# injection-regex = "^(jsx)$"
-# file-types = ["jsx"]
-# shebangs = ["deno"]
-# roots = ["deno.json", "deno.jsonc", "package.json"]
-# auto-format = true
-# language-servers = [ "tailwindcss-ls", "deno-lsp" ] #
-
-# [[language]]
-# name = "javascript"
-# language-id = "javascript"
-# scope = "source.ts"
-# injection-regex = "^(js|javascript)$"
-# file-types = ["js"]
-# shebangs = ["deno"]
-# roots = ["deno.json", "deno.jsonc", "package.json"]
-# auto-format = true
-# language-servers = [ "tailwindcss-ls", "deno-lsp" ] #
-
-
-[[language]]
-name = "html"
-auto-format = true
-formatter = { command = "prettier", args = [ "--parser", "html"] }
-language-servers = [ "tailwind-ls", "vscode-html-language-server", "emmet-language-server", "scls"]
- 
-
-[[language]]
-name = "css"
-language-id = "css"
-scope = "source.css"
-file-types = ["css"]
-language-servers = [ "vscode-css-language-server","tailwindcss-ls", "scls"]
-formatter = { command = 'prettier', args = ["--parser", "css"] }
-auto-format = true
-
+# ----------------------------
+# Go
+# ----------------------------
 [[language]]
 name = "go"
 roots = ["go.work", "go.mod"]
 auto-format = true
 comment-token = "//"
-formatter = { command = "goimports"}
-language-servers = [ "scls", "gopls"]
+formatter = { command = "goimports" }
+language-servers = ["scls", "gopls"]
 
+# ----------------------------
+# HTML
+# ----------------------------
+[[language]]
+name = "html"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "html"] }
+language-servers = [
+  "tailwindcss-ls",
+  "vscode-html-language-server",
+  "emmet-language-server",
+  "scls"
+]
+
+# ----------------------------
+# CSS
+# ----------------------------
+[[language]]
+name = "css"
+language-id = "css"
+scope = "source.css"
+file-types = ["css"]
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "css"] }
+language-servers = [
+  "vscode-css-language-server",
+  "tailwindcss-ls",
+  "scls"
+]
+
+# ----------------------------
+# Templ
+# ----------------------------
 [[language]]
 name = "templ"
 scope = "source.templ"
 auto-format = true
-formatter = { command = "templ", args = [ "fmt" ]}
-language-servers = [ "tailwindcss-ls", "templ", "emmet-language-server" ]
+formatter = { command = "templ", args = ["fmt"] }
+language-servers = [
+  "tailwindcss-ls",
+  "templ",
+  "emmet-language-server"
+]
 indent = { tab-width = 4, unit = "    " }
 
+# ----------------------------
+# SQL
+# ----------------------------
+[[language]]
+name = "sql"
+language-servers = ["sqls"]
 
-[language-server.vscode-eslint-language-server]
-command = "vscode-eslint-language-server"
-args = ["--stdio"]
-
-[language-server.vscode-eslint-language-server.config]
-validate = "on"
-experimental = { useFlatConfig = false }
-rulesCustomizations = []
-run = "onType"
-problems = { shortenToSingleLine = false }
-nodePath = ""
-
-[language-server.vscode-eslint-language-server.config.codeAction.disableRuleComment]
-enable = true
-location = "separateLine"
-
-[language-server.vscode-eslint-language-server.config.codeAction.showDocumentation]
-enable = true
-
-[language-server.vscode-eslint-language-server.config.workingDirectory]
-mode = "location"
-
-# [[language]]
-# name = "typescript"
-# language-servers = [ "typescript-language-server", "biome", "emmet-ls" ]
-# formatter = { command = "biome", args = [ "format", "--fix", "--stdin-file-path", "a.ts" ] }
-# # formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
-# # formatter = { command = "dprint", args = [ "fmt", "--stdin", "typescript" ] }
-# auto-format = true
-
-# [[language]]
-# name = "tsx"
-# language-servers = [ "typescript-language-server", "biome", "emmet-ls" ]
-# formatter = { command = "biome", args = [ "format", "--fix", "--stdin-file-path", "a.tsx" ] }
-# # formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
-# # formatter = { command = "dprint", args = [ "fmt", "--stdin", "tsx" ] }
-# auto-format = true
-
-# [[language]]
-# name = "javascript"
-# language-servers = [ "typescript-language-server", "biome", "emmet-ls" ]
-# formatter = { command = "biome", args = [ "format", "--fix", "--stdin-file-path", "a.js" ] }
-# # formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
-# # formatter = { command = "dprint", args = [ "fmt", "--stdin", "javascript" ] }
-# auto-format = true
-
-# [[language]]
-# name = "jsx"
-# language-servers = [ "typescript-language-server", "biome", "emmet-ls" ]
-# formatter = { command = "biome", args = [ "format", "--fix", "--stdin-file-path", "a.jsx" ] }
-# # formatter = { command = "prettier", args = [ "--parser", "typescript" ] }
-# # formatter = { command = "dprint", args = [ "fmt", "--stdin", "jsx" ] }
-# auto-format = true
-
-
+# ----------------------------
+# JavaScript
+# ----------------------------
 [[language]]
 name = "javascript"
-language-servers = [ "biome",{ name = "typescript-language-server", except-features = [ "format" ] }  ]
 auto-format = true
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+language-servers = [
+  { name = "vtsls", except-features = ["format"] },
+  "eslint"
+]
 
+# ----------------------------
+# TypeScript
+# ----------------------------
 [[language]]
 name = "typescript"
-language-servers = [ "biome",{ name = "typescript-language-server", except-features = [ "format" ] }  ]
 auto-format = true
+# language-servers = [
+#   "biome",
+#   { name = "typescript-language-server", except-features = ["format"] }
+# ]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+language-servers = [
+  { name = "vtsls", except-features = ["format"] },
+  "eslint"
+]
 
 [[language]]
 name = "tsx"
 auto-format = true
-language-servers = [ "biome",{ name = "typescript-language-server", except-features = [ "format" ] }  ]
+# language-servers = [
+#   "biome",
+#   { name = "typescript-language-server", except-features = ["format"] }
+# ]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+language-servers = [
+  { name = "vtsls", except-features = ["format"] },
+  "eslint"
+]
+
 
 [[language]]
 name = "jsx"
 auto-format = true
-language-servers = [ "biome",{ name = "typescript-language-server", except-features = [ "format" ] }  ]
+# language-servers = [
+#   "biome",
+#   { name = "typescript-language-server", except-features = ["format"] }
+# ]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+language-servers = [
+  { name = "vtsls", except-features = ["format"] },
+  "eslint"
+]
+
 
 [[language]]
 name = "json"
-language-servers = [ "biome",{ name = "typescript-language-server", except-features = [ "format" ] }  ]
+language-servers = [
+  "biome",
+]
 
-
+# ----------------------------
+# Prisma
+# ----------------------------
 [[language]]
-
 name = "prisma"
 auto-format = true

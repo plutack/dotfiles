@@ -7,34 +7,51 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
+  "edit_predictions": {
+    "disabled_globs": [],
+    "provider": "copilot",
+  },
+  "agent_buffer_font_size": 10.0,
+  "agent_ui_font_size": 11.0,
+  "ui_font_family": "Overpass Nerd Font",
+  "buffer_line_height": "standard",
   "autosave": {
     "after_delay": {
-      "milliseconds": 1500
-    }
+      "milliseconds": 1000,
+    },
   },
-  "buffer_font_family": "FantasqueSansM Nerd Font Mono",
+  "buffer_font_family": "OverpassM Nerd Font Mono",
   "buffer_font_weight": 100,
   "load_direnv": "shell_hook",
-  "features": {
-    "edit_prediction_provider": "copilot"
-  },
   "agent": {
+    "default_profile": "ask",
     "default_model": {
       "provider": "google",
-      "model": "gemini-3.0-pro"
-    }
+      "model": "gemini-3-pro-preview",
+    },
+    "model_parameters": [],
   },
-  "ui_font_size": 12,
-  "buffer_font_size": 12,
-  "theme": "One Dark",
+  "ui_font_size": 12.0,
+  "buffer_font_size": 12.0,
+  "theme": "Ayu Dark",
   "vim_mode": true,
+  "helix_mode": true,
   "vim": {
-    "default_mode": "helix_normal",
-    "toggle_relative_line_numbers": true
+    // "default_mode": "normal",
+    "toggle_relative_line_numbers": true,
+    "use_system_clipboard": "always",
+  },
+  "agent_servers": {
+    "OpenCode": {
+      "default_mode": "plan",
+      "type": "custom",
+      "command": "opencode",
+      "args": ["acp"],
+    },
   },
   "languages": {
     "JSON": {
-      "language_servers": ["biome"]
-    }
-  }
+      "language_servers": ["json-language-server", "!*"],
+    },
+  },
 }
