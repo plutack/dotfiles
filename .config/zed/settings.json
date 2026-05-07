@@ -7,9 +7,54 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
+  "cli_default_open_behavior": "existing_window",
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "project_panel": {
+    "dock": "right"
+  },
+  "icon_theme": {
+    "mode": "system",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)",
+  },
+  "redact_private_values": false,
+  "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always",
+          },
+        },
+        "javascript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always",
+          },
+        },
+      },
+      "enable_lsp_tasks": true,
+    },
+  },
+  "git_panel": {
+    "dock": "left",
+    "tree_view": true,
+  },
   "edit_predictions": {
+    "open_ai_compatible_api": {
+      "max_output_tokens": 64,
+      "api_url": "https://api.minimax.io/v1/text/chatcompletion_v2",
+      "model": "MiniMax-M2.7",
+    },
+    "ollama": {
+      "model": "qwen2.5-coder:7b-base",
+    },
     "disabled_globs": [],
-    "provider": "copilot",
+    "provider": "open_ai_compatible_api",
   },
   "agent_buffer_font_size": 10.0,
   "agent_ui_font_size": 11.0,
@@ -20,20 +65,21 @@
       "milliseconds": 1000,
     },
   },
-  "buffer_font_family": "OverpassM Nerd Font Mono",
+  "buffer_font_family": "JetBrains Mono",
   "buffer_font_weight": 100,
   "load_direnv": "shell_hook",
   "agent": {
-    "default_profile": "ask",
-    "default_model": {
-      "provider": "google",
-      "model": "gemini-3-pro-preview",
-    },
-    "model_parameters": [],
+    "dock": "left",
+    "flexible": false,
+    "single_file_review": true,
   },
   "ui_font_size": 12.0,
   "buffer_font_size": 12.0,
-  "theme": "Ayu Dark",
+  "theme": {
+    "mode": "system",
+    "light": "Ayu Dark",
+    "dark": "Ayu Dark",
+  },
   "vim_mode": true,
   "helix_mode": true,
   "vim": {
@@ -43,7 +89,15 @@
   },
   "agent_servers": {
     "OpenCode": {
+      "favorite_config_option_values": {
+        "model": ["minimax-coding-plan/MiniMax-M2.7"],
+      },
+      "favorite_models": [
+        "minimax-coding-plan/MiniMax-M2.7",
+        "opencode-go/glm-5",
+      ],
       "default_mode": "plan",
+      "default_model": "minimax-coding-plan/MiniMax-M2.7",
       "type": "custom",
       "command": "opencode",
       "args": ["acp"],

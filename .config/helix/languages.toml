@@ -69,6 +69,20 @@ command = "biome"
 args = ["lsp-proxy"]
 
 # ----------------------------
+# json
+# ----------------------------
+[language-server.json-ls]
+command = "vscode-json-language-server"
+args = ["--stdio"]
+
+[[language-server.json-ls.config.json.schemas]]
+fileMatch = ["*.json", "*.jsonc"]
+url = "https://json.schemastore.org"
+
+[language-server.json-ls.config.json]
+enable = true
+
+# ----------------------------
 # ESLint
 # ----------------------------
 [language-server.eslint]
@@ -258,8 +272,11 @@ language-servers = [
 
 [[language]]
 name = "json"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "json"] }
 language-servers = [
-  "biome",
+  # "biome",
+  "json-ls"
 ]
 
 # ----------------------------

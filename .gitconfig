@@ -116,3 +116,5 @@
 	updateRefs = true
 [pull]
 	rebase = true
+[alias]
+	cp = cherry-pick
