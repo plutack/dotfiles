@@ -9,13 +9,13 @@
 {
   "cli_default_open_behavior": "existing_window",
   "outline_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "collaboration_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "project_panel": {
-    "dock": "right"
+    "dock": "right",
   },
   "icon_theme": {
     "mode": "system",
@@ -45,16 +45,44 @@
     "tree_view": true,
   },
   "edit_predictions": {
-    "open_ai_compatible_api": {
-      "max_output_tokens": 64,
-      "api_url": "https://api.minimax.io/v1/text/chatcompletion_v2",
-      "model": "MiniMax-M2.7",
-    },
-    "ollama": {
-      "model": "qwen2.5-coder:7b-base",
-    },
-    "disabled_globs": [],
     "provider": "open_ai_compatible_api",
+    "open_ai_compatible_api": {
+      "api_url": "https://api.minimax.io/v1",
+      "model": "MiniMax-M2.7",
+      "max_output_tokens": 64,
+    },
+  },
+  "language_models": {
+    "openai_compatible": {
+      "MiniMax": {
+        "api_url": "https://api.minimax.io/v1",
+        "available_models": [
+          {
+            "name": "MiniMax-M2.7",
+            "max_tokens": 200000,
+            "max_output_tokens": 32000,
+            "max_completion_tokens": 200000,
+            "capabilities": {
+              "tools": true,
+              "images": true,
+              "parallel_tool_calls": true,
+              "prompt_cache_key": true,
+              "chat_completions": true,
+              "interleaved_reasoning": false,
+            },
+          },
+        ],
+      },
+    },
+    "anthropic": {
+      "api_url": "https://api.minimax.io/v1",
+      "available_models": [
+        {
+          "name": "MiniMax-M2.7",
+          "max_tokens": 4096,
+        },
+      ],
+    },
   },
   "agent_buffer_font_size": 10.0,
   "agent_ui_font_size": 11.0,
@@ -69,6 +97,11 @@
   "buffer_font_weight": 100,
   "load_direnv": "shell_hook",
   "agent": {
+    "default_model": {
+      "provider": "MiniMax",
+      "model": "MiniMax-M2.7",
+      "enable_thinking": false,
+    },
     "dock": "left",
     "flexible": false,
     "single_file_review": true,
@@ -90,7 +123,10 @@
   "agent_servers": {
     "OpenCode": {
       "favorite_config_option_values": {
-        "model": ["minimax-coding-plan/MiniMax-M2.7"],
+        "model": [
+          "minimax-coding-plan/MiniMax-M2.7",
+          "opencode-go/glm-5.1"
+        ],
       },
       "favorite_models": [
         "minimax-coding-plan/MiniMax-M2.7",
