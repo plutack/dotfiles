@@ -7,6 +7,12 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
+  "unnecessary_code_fade": 0.5,
+  "ui_font_weight": 500.0,
+  "relative_line_numbers": "enabled",
+  "which_key": {
+    "enabled": true
+  },
   "cli_default_open_behavior": "existing_window",
   "outline_panel": {
     "dock": "left",
@@ -22,7 +28,7 @@
     "light": "Zed (Default)",
     "dark": "Zed (Default)",
   },
-  "redact_private_values": false,
+  "redact_private_values": true,
   "lsp": {
     "vtsls": {
       "settings": {
@@ -54,26 +60,7 @@
   },
   "language_models": {
     "openai_compatible": {
-      "MiniMax": {
-        "api_url": "https://api.minimax.io/v1",
-        "available_models": [
-          {
-            "name": "MiniMax-M2.7",
-            "max_tokens": 200000,
-            "max_output_tokens": 32000,
-            "max_completion_tokens": 200000,
-            "capabilities": {
-              "tools": true,
-              "images": true,
-              "parallel_tool_calls": true,
-              "prompt_cache_key": true,
-              "chat_completions": true,
-              "interleaved_reasoning": false,
-            },
-          },
-        ],
       },
-    },
     "anthropic": {
       "api_url": "https://api.minimax.io/v1",
       "available_models": [
@@ -84,9 +71,8 @@
       ],
     },
   },
-  "agent_buffer_font_size": 10.0,
-  "agent_ui_font_size": 11.0,
-  "ui_font_family": "Overpass Nerd Font",
+  "agent_buffer_font_size": 17.0,
+  "agent_ui_font_size": 20.0,
   "buffer_line_height": "standard",
   "autosave": {
     "after_delay": {
@@ -94,7 +80,7 @@
     },
   },
   "buffer_font_family": "JetBrains Mono",
-  "buffer_font_weight": 100,
+  "buffer_font_weight": 100.0,
   "load_direnv": "shell_hook",
   "agent": {
     "default_model": {
@@ -106,11 +92,11 @@
     "flexible": false,
     "single_file_review": true,
   },
-  "ui_font_size": 12.0,
-  "buffer_font_size": 12.0,
+  "ui_font_size": 20.0,
+  "buffer_font_size": 17.0,
   "theme": {
     "mode": "system",
-    "light": "Ayu Dark",
+    "light": "Ayu Mirage",
     "dark": "Ayu Dark",
   },
   "vim_mode": true,

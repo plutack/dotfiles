@@ -163,7 +163,7 @@ keybinds clear-defaults=true {
     shared_except "normal" "locked" "entersearch" "renametab" "renamepane" {
         bind "esc" { SwitchToMode "normal"; }
     }
-    // shared_except "normal" "locked" "scroll" {
+    shared_except "normal" "locked" "scroll" {
         bind "Alt s" { SwitchToMode "scroll"; }
     }
     shared_among "tab" "tmux" {
