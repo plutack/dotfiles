@@ -10,6 +10,11 @@ keybinds clear-defaults=true {
                 floating true
             }
         }
+        bind "Alt m" {
+            LaunchOrFocusPlugin "zellij:plugin-manager" {
+                floating true
+            }
+        }
         bind "Alt f" { ToggleFloatingPanes; SwitchToMode "normal"; }
         bind "Alt g" { ToggleFocusFullscreen; SwitchToMode "normal"; }
         bind "Alt h" { SwitchToMode "move"; }
