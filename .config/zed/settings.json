@@ -7,11 +7,17 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
+  "git": {
+    "inline_blame": {
+      "enabled": true
+    }
+  },
+  "diff_view_style": "split",
   "unnecessary_code_fade": 0.5,
   "ui_font_weight": 500.0,
   "relative_line_numbers": "enabled",
   "which_key": {
-    "enabled": true
+    "enabled": true,
   },
   "cli_default_open_behavior": "existing_window",
   "outline_panel": {
@@ -28,7 +34,7 @@
     "light": "Zed (Default)",
     "dark": "Zed (Default)",
   },
-  "redact_private_values": true,
+  "redact_private_values": false,
   "lsp": {
     "vtsls": {
       "settings": {
@@ -47,11 +53,11 @@
     },
   },
   "git_panel": {
-    "dock": "left",
+    "dock": "right",
     "tree_view": true,
   },
   "edit_predictions": {
-    "provider": "open_ai_compatible_api",
+    "provider": "zed",
     "open_ai_compatible_api": {
       "api_url": "https://api.minimax.io/v1",
       "model": "MiniMax-M2.7",
@@ -60,15 +66,28 @@
   },
   "language_models": {
     "openai_compatible": {
-      },
-    "anthropic": {
-      "api_url": "https://api.minimax.io/v1",
-      "available_models": [
-        {
-          "name": "MiniMax-M2.7",
-          "max_tokens": 4096,
-        },
-      ],
+      "MiniMax": {
+        "api_url": "https://api.minimax.io/v1",
+        "available_models": [
+          {
+            "name": "MiniMax-M3",
+            "max_tokens": 200000,
+            "max_output_tokens": 32000,
+            "max_completion_tokens": 200000,
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": false,
+              "prompt_cache_key": false,
+              "chat_completions": true,
+              "interleaved_reasoning": false
+            }
+          }
+        ]
+      }
+    },
+    "opencode": {
+      "show_zen_models": false,
     },
   },
   "agent_buffer_font_size": 17.0,
@@ -83,9 +102,13 @@
   "buffer_font_weight": 100.0,
   "load_direnv": "shell_hook",
   "agent": {
+    "tool_permissions": {
+      "default": "allow",
+    },
+    "default_profile": "write",
     "default_model": {
       "provider": "MiniMax",
-      "model": "MiniMax-M2.7",
+      "model": "MiniMax-M3",
       "enable_thinking": false,
     },
     "dock": "left",
@@ -107,12 +130,12 @@
     "use_system_clipboard": "always",
   },
   "agent_servers": {
+    "claude-acp": {
+      "type": "registry"
+    },
     "OpenCode": {
       "favorite_config_option_values": {
-        "model": [
-          "minimax-coding-plan/MiniMax-M2.7",
-          "opencode-go/glm-5.1"
-        ],
+        "model": ["minimax-coding-plan/MiniMax-M2.7", "opencode-go/glm-5.1"],
       },
       "favorite_models": [
         "minimax-coding-plan/MiniMax-M2.7",

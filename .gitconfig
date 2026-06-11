@@ -109,7 +109,7 @@
 	autoCorrect = prompt
 [rerere]
 	enabled = false
-	autoUpdate = true
+	autoUpdate = false
 [rebase]
 	autoSquash = true
 	autoStash = true
