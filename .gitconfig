@@ -15,7 +15,8 @@
 	gpgSign = true
 [core]
 	editor = hx
-	pager = delta 
+	# pager = hunk pager 
+	pager = delta
 	fsmonitor = true
 
 
@@ -118,3 +119,5 @@
 	rebase = true
 [alias]
 	cp = cherry-pick
+	hdiff = -c core.pager=\"hunk pager\" diff
+	hshow = -c core.pager=\"hunk pager\" show
